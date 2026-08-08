@@ -1,31 +1,68 @@
-# Airtune
+# 🎵 Airtune
 
-Airtune is a full-stack music platform where listeners discover music and artists can upload original audio and publish albums.
+A full-stack music streaming platform built with JavaScript, Node.js, Express.js and MongoDB. Airtune provides user authentication, music and album management, protected API routes and cloud-based media storage.
 
-## Stack
+## 🚀 Features
 
-- Frontend: semantic HTML, responsive CSS, vanilla JavaScript
-- Backend: Node.js, Express, express-validator, JWT authentication, Multer
-- Data and media: MongoDB/Mongoose and ImageKit
+- 🔐 JWT-based user authentication
+- 👤 User registration and login
+- 🎵 Music management
+- 💿 Album management
+- 🛡️ Protected routes using authentication middleware
+- ✅ Request validation middleware
+- 🗄️ MongoDB database integration using Mongoose
+- ☁️ Cloud-based media storage
+- 🔌 RESTful API architecture
+- 🎨 Responsive music streaming interface
 
-## Run locally
+## 🛠️ Tech Stack
 
-1. In `Backend`, create a `.env` file with `MONGO_URI`, `JWT_SECRET`, and `IMAGEKIT_PRIVATE_KEY`.
-2. Run `node server.js` from the `Backend` directory.
-3. Open `http://localhost:3000`.
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+- Axios
 
-The Express server serves the frontend directly, so there is no separate frontend server to configure.
+### Backend
+- Node.js
+- Express.js
+- JWT
+- REST APIs
 
-## Key features
+### Database
+- MongoDB
+- Mongoose
 
-- Register and log in as a listener or artist
-- Cookie-based JWT-protected API requests
-- Request validation middleware for registration and login credentials
-- Browse tracks and albums retrieved from the backend
-- Play uploaded audio in the in-browser player
-- Artist studio for audio upload and album creation
-- Responsive, original interface designed for desktop and mobile
+### Cloud Storage
+- ImageKit
 
-## Resume description
+### Tools
+- Git
+- GitHub
+- VS Code
+- Postman
 
-**Airtune — Full-Stack Music Platform** · Built a responsive music discovery platform using HTML, CSS, JavaScript, Node.js, Express, MongoDB, JWT authentication, Multer, and ImageKit. Implemented role-based listener/artist accounts, secure cookie sessions, music uploads, album creation, and live REST API integration.
+## 📁 Project Structure
+
+```text
+Airtune/
+│
+├── Backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── db/
+│   │   ├── middlewares/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── services/
+│   ├── package.json
+│   └── server.js
+│
+├── Frontend/
+│   ├── index.html
+│   ├── app.js
+│   ├── styles.css
+│   └── album.css
+│
+├── .gitignore
+└── README.md
