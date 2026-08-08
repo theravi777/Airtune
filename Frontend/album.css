@@ -1,0 +1,17 @@
+.album-dialog { max-width: 760px; padding: 0; display: grid; grid-template-columns: 260px 1fr; min-height: 420px; }
+.album-detail-art { background: linear-gradient(135deg, #ed5e8d, #623bcb 52%, #f1d67a); position: relative; overflow: hidden; }
+.album-detail-art::after { content: ""; position: absolute; width: 300px; aspect-ratio: 1; border-radius: 50%; right: -110px; bottom: -90px; background: #17111f; box-shadow: inset 0 0 0 42px #ffb1c7; }
+.album-detail-copy { padding: 48px 42px 38px; }
+.album-detail-copy h2 { font-size: 42px; letter-spacing: -2.5px; line-height: 1; margin: 0 0 10px; }
+.album-detail-copy > p:not(.eyebrow) { margin: 0 0 30px; color: var(--muted); font-size: 14px; }
+.album-track-list { border-top: 1px solid #343340; }
+.album-detail-track { width: 100%; border: 0; border-bottom: 1px solid #343340; background: transparent; color: var(--ink); padding: 15px 0; display: grid; grid-template-columns: 28px 1fr auto; align-items: center; text-align: left; gap: 8px; font: 14px Manrope, sans-serif; cursor: pointer; }
+.album-detail-track:hover { color: var(--pink); }
+.album-detail-track span:first-child { font: 11px 'DM Mono', monospace; color: var(--pink); }
+.album-detail-track span:last-child { font-size: 11px; color: var(--muted); }
+.album-empty { color: var(--muted); font-size: 13px; padding: 22px 0; }
+.album-edit { margin-top: 24px; padding-top: 22px; border-top: 1px solid #343340; }
+.album-edit h3 { margin: 0 0 12px; font-size: 15px; }
+.album-edit select { height: 94px; margin-bottom: 12px; }
+.album-edit .pill-button { padding: 10px 15px; font-size: 11px; }
+@media (max-width: 700px) { .album-dialog { grid-template-columns: 1fr; padding: 0; } .album-detail-art { height: 145px; } .album-detail-copy { padding: 32px 24px; } }

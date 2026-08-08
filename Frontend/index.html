@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08080f" />
+    <title>Airtune — music without limits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="album.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Airtune home"><span class="brand-mark">A</span>AIRTUNE</a>
+      <nav><a href="#discover">Discover</a><a href="#library">Library</a></nav>
+      <div id="account-actions"><button class="text-button" data-open-auth="login">Log in</button><button class="pill-button" data-open-auth="register">Join Airtune</button></div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="hero-copy"><p class="eyebrow">Independent music, in full color</p><h1>Sound<br /><em>unboxed.</em></h1><p class="hero-text">Airtune is a home for fresh releases, independent artists and the listeners who find them first.</p><div class="hero-actions"><button class="pill-button" id="explore-button">Start listening <span>↗</span></button><button class="circle-play" id="hero-play" aria-label="Play featured track">▶</button><span>Play featured</span></div></div>
+        <div class="hero-art" aria-label="Abstract featured album artwork"><div class="art-glow"></div><div class="art-disc"><span>NOW<br />PLAYING</span><i></i></div><div class="feature-label"><span>01 / FEATURED</span><strong id="feature-title">Find your next favorite.</strong></div></div>
+      </section>
+
+      <section class="content-section" id="discover"><div class="section-heading"><div><p class="eyebrow">Fresh from Airtune</p><h2>Explore the sound.</h2></div><button class="text-button" id="refresh-button">Refresh ↻</button></div><div id="music-state" class="state-card">Log in to load music from the Airtune API.</div><div id="track-list" class="track-list"></div></section>
+      <section class="content-section albums" id="library"><div class="section-heading"><div><p class="eyebrow">Curated collections</p><h2>Albums to keep close.</h2></div></div><div id="album-state" class="state-card">Your album library will appear here.</div><div id="album-grid" class="album-grid"></div></section>
+
+      <section class="artist-callout" id="artist-area"><div><p class="eyebrow">For artists</p><h2>Put your sound<br />in the world.</h2></div><p>Upload original tracks and group them into albums. Your next listener is already here.</p><button class="pill-button light" id="artist-button">Open artist studio <span>↗</span></button></section>
+    </main>
+
+    <audio id="audio-player"></audio>
+    <div class="now-playing" id="now-playing"><button id="player-toggle" aria-label="Toggle playback">▶</button><div class="wave"><i></i><i></i><i></i><i></i><i></i></div><div><small>NOW PLAYING</small><strong id="player-title">Choose a track to play</strong></div><span id="player-artist"></span></div>
+
+    <dialog id="auth-dialog"><button class="close" data-close="auth-dialog">×</button><div class="modal-copy"><p class="eyebrow">WELCOME TO AIRTUNE</p><h2 id="auth-title">Welcome back.</h2><p id="auth-subtitle">Log in and let the music find you.</p></div><form id="auth-form"><label id="username-field">Username<input name="username" autocomplete="username" required minlength="3" maxlength="30" pattern="[A-Za-z0-9_]+" title="Use 3–30 letters, numbers, or underscores." /></label><label id="email-field">Email<input name="email" type="email" autocomplete="email" required /></label><label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8" title="Use at least 8 characters including uppercase, lowercase, and a number." /></label><label class="role-field" id="role-field">I’m joining as<select name="role"><option value="user">A listener</option><option value="artist">An artist</option></select></label><p class="form-message" id="auth-message"></p><button class="pill-button" type="submit" id="auth-submit">Create account <span>↗</span></button></form><button class="form-switch" id="auth-switch">Already have an account? Log in</button></dialog>
+
+    <dialog id="studio-dialog"><button class="close" data-close="studio-dialog">×</button><div class="modal-copy"><p class="eyebrow">ARTIST STUDIO</p><h2>Release something real.</h2><p>Upload a track, then build an album from your releases.</p></div><div class="studio-grid"><form id="upload-form"><h3>Upload a track</h3><label>Track title<input name="title" required maxlength="100" /></label><label class="file-label">Audio file<input name="music" type="file" accept="audio/*" required /></label><p class="form-message" id="upload-message"></p><button class="pill-button" type="submit">Upload track <span>↑</span></button></form><form id="album-form"><h3>Create an album</h3><label>Album title<input name="title" required maxlength="100" /></label><label>Include tracks<select name="musics" id="album-tracks" multiple required></select></label><small>Hold Ctrl / Cmd to select more than one track.</small><p class="form-message" id="album-message"></p><button class="pill-button" type="submit">Create album <span>↗</span></button></form></div></dialog>
+    <dialog id="album-dialog" class="album-dialog"><button id="album-close" class="close" type="button" aria-label="Close album">×</button><div class="album-detail-art"></div><div class="album-detail-copy"><p class="eyebrow">ALBUM · <span id="album-track-count">0 tracks</span></p><h2 id="album-detail-title">Album title</h2><p id="album-detail-artist">Artist</p><div id="album-track-list" class="album-track-list"></div><div id="album-edit"></div></div></dialog>
+    <div id="toast" role="status"></div><script src="app.js"></script>
+  </body>
+</html>
