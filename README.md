@@ -2,6 +2,10 @@
 
 A full-stack music streaming platform built with JavaScript, Node.js, Express.js and MongoDB. Airtune provides user authentication, music and album management, protected API routes and cloud-based media storage.
 
+## 🚀 Live Demo
+
+🔗 **[Airtune - Live Demo](https://airtune-backend.onrender.com)**
+
 ## 🚀 Features
 
 - 🔐 JWT-based user authentication
