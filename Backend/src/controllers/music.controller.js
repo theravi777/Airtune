@@ -96,7 +96,7 @@ async function getAllMusic(req, res) {
 
     const musics = await musicModel
     .find()
-    .populate('artist', 'username email'); // Retrieve all music and populate the artist field with username and email
+    .populate('artist', 'username'); // Retrieve only the public artist name
 
     res.status(200).json({
         message: 'Music retrieved successfully',
@@ -106,7 +106,7 @@ async function getAllMusic(req, res) {
 
 async function getAllAlbums(req,res) {
 
-    const albums = await albumModel.find().select("title artist").populate("artist", "username email")
+    const albums = await albumModel.find().select("title artist").populate("artist", "username")
 
     res.status(200).json({
         message: "Albums fetched successfully",
@@ -151,11 +151,35 @@ async function addTracksToAlbum(req, res) {
     });
 }
 
+async function renameMusic(req, res) {
+    const { musicId } = req.params;
+    const title = typeof req.body.title === 'string' ? req.body.title.trim() : '';
+
+    if (!title || title.length > 100) {
+        return res.status(400).json({ message: 'Track title must be between 1 and 100 characters.' });
+    }
+
+    const music = await musicModel.findOneAndUpdate(
+        { _id: musicId, artist: req.user.id },
+        { title },
+        { new: true, runValidators: true }
+    ).populate('artist', 'username');
+
+    if (!music) {
+        return res.status(404).json({ message: 'Track not found, or you do not have permission to edit it.' });
+    }
+
+    return res.status(200).json({
+        message: 'Track title updated successfully.',
+        music,
+    });
+}
+
 async function getAlbumById(req,res){
 
     const albumId = req.params.albumId;
 
-    const album = await albumModel.findById(albumId).populate("artist", "username email").populate("musics")
+    const album = await albumModel.findById(albumId).populate("artist", "username").populate("musics")
 
     return res.status(200).json({
         message: "Album fetched successfully",
@@ -172,4 +196,5 @@ module.exports = {
     getAllAlbums,
     getAlbumById,
     addTracksToAlbum,
+    renameMusic,
 };

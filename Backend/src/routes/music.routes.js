@@ -18,6 +18,8 @@ router.post("/album", authMiddleware.authArtist, musicController.createAlbum); /
 
 router.patch("/albums/:albumId/tracks", authMiddleware.authArtist, musicController.addTracksToAlbum);
 
+router.patch("/:musicId", authMiddleware.authArtist, musicController.renameMusic);
+
 router.get("/", authMiddleware.authUser, musicController.getAllMusic); // Route for retrieving all music
 
 router.get("/albums", authMiddleware.authUser, musicController.getAllAlbums);
