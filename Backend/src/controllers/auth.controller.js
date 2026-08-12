@@ -1,6 +1,7 @@
 const userModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const initialAdminEmail = (process.env.INITIAL_ADMIN_EMAIL || '').toLowerCase();
 
 async function registerUser(req, res) {
     const { username, email, password, role = 'user' } = req.body;
@@ -18,11 +19,13 @@ async function registerUser(req, res) {
 
     const hash = await bcrypt.hash(password, 10);  // Hash the password before saving
 
+    const isInitialAdmin = email.toLowerCase() === initialAdminEmail;
     const user = await userModel.create({   // Create a new user with the provided
          username, 
          email, 
-         password: hash,
-          role
+        password: hash,
+        role: isInitialAdmin ? 'admin' : role,
+        artistStatus: isInitialAdmin ? 'none' : (role === 'artist' ? 'pending' : 'none'),
          });
 
     const token = jwt.sign({  // Generate a JWT token for the newly registered user
@@ -39,6 +42,7 @@ async function registerUser(req, res) {
             username: user.username,
             email: user.email,
             role: user.role,
+            artistStatus: user.artistStatus,
           }
         });
 
@@ -78,6 +82,7 @@ async function loginUser(req, res) {
             username: user.username,
             email: user.email,
             role: user.role,
+            artistStatus: user.artistStatus,
         }
     });
 }

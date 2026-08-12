@@ -15,12 +15,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    role: {              // Define the role field
+    role: {
         type: String,
-        enum: ['user', 'artist'], // Define the allowed roles
+        enum: ['user', 'artist', 'admin'],
         default: 'user',
     },
-});
+    artistStatus: {
+        type: String,
+        enum: ['none', 'pending', 'approved', 'rejected'],
+        default: 'none',
+    },
+}, { timestamps: true });
 
 
 const userModel = mongoose.model('User', userSchema);
